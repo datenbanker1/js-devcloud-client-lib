@@ -32,7 +32,6 @@ console.log("init success");
 (async () => {
   try {
     const result = await AuthenticationTests();
-    console.log(result, "HUI");
   } catch (err) {
     console.log(err);
   }

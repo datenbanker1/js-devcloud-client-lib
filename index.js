@@ -12,6 +12,7 @@ class DevCloudClass {
         refreshToken: false,
         idToken: false
       },
+      signedIn: false,
       services: params.services || {},
       handler: params.handler || {},
       handlerList: ["tokenChange", "notAuthorized"]
@@ -28,8 +29,15 @@ class DevCloudClass {
     if (this.config.handler[event]) this.config.handler[event](params);
   }
   setTokens(newTokens) {
+    if (newTokens === false)
+      newTokens = {
+        accessToken: false,
+        refreshToken: false,
+        idToken: false
+      };
     this.on("tokenChange", newTokens);
     this.config.tokens = { ...this.config.tokens, ...newTokens };
+    this.config.signedIn = !!newTokens.accessToken;
   }
   getConfig() {
     return this.config;
