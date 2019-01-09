@@ -1,5 +1,5 @@
 import config from "./config";
-import { DevCloud } from "./../";
+import { DevCloud } from "./../build";
 import AuthenticationTests from "./Authentication";
 
 console.log("####Start Testing######");

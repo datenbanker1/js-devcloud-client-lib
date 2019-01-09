@@ -1,9 +1,9 @@
-import { DevCloud, Authentication } from "./../../";
 import {
   ConnectionError,
   ServerError,
   UnknownError
-} from "./../../errors/Connection";
+} from "./../errors/Connection";
+import { DevCloud, Authentication } from "./../";
 import axios from "axios";
 export default class Connector {
   /**

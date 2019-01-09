@@ -1,6 +1,6 @@
 import services from "./../config/services";
+import Connector from "./../helper/Connector";
 import { DevCloud } from "./../";
-import Connector from "./helper/Connector";
 import { PoolException, IdException } from "./../errors/General";
 //used for communication with Customer service
 export default class Customer {

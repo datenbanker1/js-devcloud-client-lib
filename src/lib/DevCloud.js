@@ -1,7 +1,4 @@
-import { apiTokenNotSetError } from "./errors/General";
-import Authentication from "./lib/Authentication";
-import Customer from "./lib/Customer";
-
+import { apiTokenNotSetError } from "./../errors/General";
 class DevCloudClass {
   init(params) {
     if (!params.apiToken) throw apiTokenNotSetError("Please set an apiToken");
@@ -45,4 +42,5 @@ class DevCloudClass {
 }
 
 let DevCloud = new DevCloudClass();
-export { DevCloud, Authentication, Customer };
+
+export default DevCloud;

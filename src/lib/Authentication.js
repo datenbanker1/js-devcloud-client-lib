@@ -1,6 +1,6 @@
 import services from "./../config/services";
 import { DevCloud } from "./../";
-import Connector from "./helper/Connector";
+import Connector from "./../helper/Connector";
 // used for communication with authentication service
 export default class Authentication {
   constructor(config = {}) {
