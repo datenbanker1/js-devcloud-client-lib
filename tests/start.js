@@ -1,6 +1,5 @@
 import config from "./config";
-import { DevCloud } from "./../build";
-import AuthenticationTests from "./Authentication";
+import { DevCloud, Customer } from "./../build";
 
 console.log("####Start Testing######");
 DevCloud.init({
@@ -31,7 +30,9 @@ console.log("init success");
 // start testing
 (async () => {
   try {
-    const result = await AuthenticationTests();
+    const customer = new Customer();
+    const persons = await customer.person.getAll();
+    console.log(persons);
   } catch (err) {
     console.log(err);
   }

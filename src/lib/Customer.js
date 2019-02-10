@@ -188,7 +188,7 @@ const getPersonPool = (config = {}) => {
   ) {
     return customer.person.pool[0];
   } else {
-    throw new PoolException("Pool could not be identified!");
+    throw new PoolException("Person pool could not be identified!");
   }
 };
 const getOpportunityPool = (config = {}) => {
@@ -201,7 +201,7 @@ const getOpportunityPool = (config = {}) => {
   ) {
     return customer.opportunity.pool[0];
   } else {
-    throw new PoolException("Pool could not be identified!");
+    throw new PoolException("Opportunity pool could not be identified!");
   }
 };
 const getTaskPool = (config = {}) => {
@@ -210,6 +210,6 @@ const getTaskPool = (config = {}) => {
   if (customer.task && customer.task.pool && customer.task.pool.length === 1) {
     return customer.task.pool[0];
   } else {
-    throw new PoolException("Pool could not be identified!");
+    throw new PoolException("Task pool could not be identified!");
   }
 };

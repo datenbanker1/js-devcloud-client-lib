@@ -78,6 +78,7 @@ export default class Authentication {
     return this.user.pool;
   }
 }
+
 const getUserPool = (config = {}) => {
   if (config.pool) return config.pool;
   const { authentication } = DevCloud.getConfig().services;

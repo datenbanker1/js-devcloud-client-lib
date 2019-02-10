@@ -36,6 +36,9 @@ class DevCloudClass {
     this.config.tokens = { ...this.config.tokens, ...newTokens };
     this.config.signedIn = !!newTokens.accessToken;
   }
+  getIdToken() {
+    return this.config.tokens.idToken;
+  }
   getConfig() {
     return this.config;
   }
