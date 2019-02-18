@@ -1,8 +1,4 @@
-import {
-  ConnectionError,
-  ServerError,
-  UnknownError
-} from "./../errors/Connection";
+import { ServerError, UnknownError } from "./../errors/Connection";
 import { DevCloud, Authentication } from "./../";
 import axios from "axios";
 export default class Connector {
@@ -19,6 +15,7 @@ export default class Connector {
   }
   refreshConfig(api) {
     this._config = DevCloud.getConfig();
+    console.log(DevCloud.getConfig());
     const { accessToken, app } = this._config.tokens;
     if (this.useAppToken) this._authorization = app;
     else this._authorization = accessToken || app;
@@ -65,7 +62,7 @@ export default class Connector {
             DevCloud.on("notAuthorized");
           }
           this.refreshConfig(this._api);
-          return await this.call(params);
+          return this.call(params);
           // retry with new tokens
         } else if (resp.status === 403) {
           DevCloud.on("notAuthorized");

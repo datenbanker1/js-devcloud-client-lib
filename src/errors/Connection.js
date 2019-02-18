@@ -6,7 +6,7 @@ export function ConnectionError(code, errors, msg = "") {
 }
 
 export function ServerError(code, errors, msg = "") {
-  this.name = "connectionError";
+  this.name = "serverError";
   this.code = code;
   this.errors = errors;
   this.message = msg;

@@ -23,11 +23,6 @@ export default class Customer {
     };
   }
   person = {
-    /**
-     * Promise
-     * @param {boolean || string} pool
-     * @return {Promise}
-     */
     getAll: async (pool = false) => {
       if (pool === false) pool = this.config.person.pool;
       const connector = new Connector(services.customer.address);
@@ -51,6 +46,18 @@ export default class Customer {
         }
       });
     },
+    add: async (fields, pool = false) => {
+      if (pool === false) pool = this.config.person.pool;
+      const connector = new Connector(services.customer.address);
+      return await connector.call({
+        method: "POST",
+        function: "/person/add",
+        data: {
+          pool,
+          ...fields
+        }
+      });
+    },
     update: async (fields, id = false, pool = false) => {
       if (pool === false) pool = this.config.person.pool;
       if (!id) throw new IdException("Please set an id in Person.update()");
@@ -62,6 +69,18 @@ export default class Customer {
           id,
           pool,
           ...fields
+        }
+      });
+    },
+    delete: async (id, pool = false) => {
+      if (pool === false) pool = this.config.person.pool;
+      const connector = new Connector(services.customer.address);
+      return await connector.call({
+        method: "POST",
+        function: "/person/delete",
+        data: {
+          pool,
+          id
         }
       });
     }
@@ -95,7 +114,6 @@ export default class Customer {
     },
     add: async (fields, pool = false) => {
       if (pool === false) pool = this.config.opportunity.pool;
-
       const connector = new Connector(services.customer.address);
       return await connector.call({
         method: "POST",
@@ -131,9 +149,8 @@ export default class Customer {
     delete: async (id, pool = false) => {
       if (pool === false) pool = this.config.opportunity.pool;
       if (!id) {
-        throw new IdException("Please set an id in Opportunity.delete()");
+        throw new IdException("Please set an id for Person.delete()");
       }
-
       const connector = new Connector(services.customer.address);
       return await connector.call({
         method: "POST",

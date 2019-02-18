@@ -1,12 +1,15 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/.idea
 /node_modules
 /tests/config.js
 
 # testing
-/coverage
+/tests/config/access.js
+#idea/editor
+.vscode
+.idea
+*.code-workspace
 
 # misc
 .DS_Store
