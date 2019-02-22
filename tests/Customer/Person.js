@@ -8,5 +8,9 @@ export default {
   delete: async ({ id }) => {
     const customer = new Customer();
     return customer.person.delete(id);
+  },
+  history: async ({ id }) => {
+    const customer = new Customer();
+    return customer.person.history(id);
   }
 };

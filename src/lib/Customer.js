@@ -72,6 +72,21 @@ export default class Customer {
         }
       });
     },
+    history: async (id = false, pool = false, position, amount = 10) => {
+      if (pool === false) pool = this.config.person.pool;
+      if (!id) throw new IdException("Please set an id in Person.history()");
+      const connector = new Connector(services.customer.address);
+      return await connector.call({
+        method: "POST",
+        function: "/person/history",
+        data: {
+          id,
+          pool,
+          position: position || "eyJlbnRyeSI6MH0=",
+          amount
+        }
+      });
+    },
     delete: async (id, pool = false) => {
       if (pool === false) pool = this.config.person.pool;
       const connector = new Connector(services.customer.address);

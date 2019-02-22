@@ -1,13 +1,13 @@
 {
   "name": "@datenbanker/devcloud-client-lib",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Javascript lib for communication between client and devcloud.",
   "main": "build/index.js",
   "scripts": {
     "test": "webpack-dev-server --config=config/webpack.test.js",
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "rm -rf build && webpack --config=config/webpack.production.js",
-    "publish": "npm publish --access=public"
+    "build": "rm -rf build; webpack --config=config/webpack.production.js",
+    "pub": "npm run build; npm publish --access=public"
   },
   "dependencies": {
     "axios": "^0.18.0"

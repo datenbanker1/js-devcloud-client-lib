@@ -22,7 +22,7 @@ export default [
           name: "serverError",
           code: "forbidden",
           errors: [
-            { key: "username", error: "anotValid" },
+            { key: "username", error: "notValid" },
             { key: "password", error: "notValid" }
           ]
         }
@@ -61,6 +61,30 @@ export default [
         },
         response: {
           action: "deleted"
+        }
+      }
+    ]
+  },
+  {
+    name: "Customer/Person - history",
+    function: Customer.Person.history,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          id: "c7354e29-b610-45e6-a5c9-642c620fbfbe"
+        },
+        response: {
+          start: "eyJlbnRyeSI6MH0=",
+          previouse: Boolean,
+          events: [
+            {
+              requestId: String,
+              app: String,
+              ip: String,
+              creatrionDate: String
+            }
+          ]
         }
       }
     ]
