@@ -1,5 +1,6 @@
 import Authenticaion from "../Authentication";
 import Customer from "../Customer";
+import Art from "../Art";
 import access from "./access";
 export default [
   {
@@ -86,6 +87,197 @@ export default [
             }
           ]
         }
+      }
+    ]
+  },
+  {
+    name: "Art - pool/my",
+    function: Art.Pool.my,
+    scenarios: [
+      {
+        name: "Success",
+        params: {},
+        response: []
+      }
+    ]
+  },
+  {
+    name: "Art - pool/all",
+    function: Art.Pool.all,
+    scenarios: [
+      {
+        name: "Success",
+        params: {},
+        response: []
+      }
+    ]
+  },
+  {
+    name: "Art - pool/add",
+    function: Art.Pool.add,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          name: "Test - Pool",
+          displayName: "Test",
+          type: "rent"
+        },
+        response: []
+      }
+    ]
+  },
+  {
+    name: "Art - pool/delete",
+    function: Art.Pool.delete,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          id: "67ce20b8-eb6f-4705-9876-da5f5bf48683"
+        },
+        response: {
+          action: "deleted"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - pool/user/add",
+    function: Art.Pool.userAdd,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          user: "79b95b80-a284-4aa1-b789-175ef88f001e",
+          pool: "cf1233b6-34d9-4ff9-ba6a-0f230794281f"
+        },
+        response: {
+          action: "added"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - pool/user/delete",
+    function: Art.Pool.userDelete,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          user: "79b95b80-a284-4aa1-b789-175ef88f001e",
+          pool: "cf1233b6-34d9-4ff9-ba6a-0f230794281f"
+        },
+        response: {
+          action: "deleted"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - pool/art/add",
+    function: Art.Pool.artAdd,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          art: "ccfeecb4-acfd-4dd0-a1ac-f02780a293d9",
+          pool: "cf1233b6-34d9-4ff9-ba6a-0f230794281f"
+        },
+        response: {
+          action: "added"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - pool/user/delete",
+    function: Art.Pool.artDelete,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          art: "ccfeecb4-acfd-4dd0-a1ac-f02780a293d9",
+          pool: "cf1233b6-34d9-4ff9-ba6a-0f230794281f"
+        },
+        response: {
+          action: "deleted"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - artist/get",
+    function: Art.Artist.get,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          id: "b021e6e9-e853-4a01-9a8e-5de0b1cfd204"
+        },
+        response: {
+          action: "deleted"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - artist/all",
+    function: Art.Artist.all,
+    scenarios: [
+      {
+        name: "Success",
+        response: {
+          action: "deleted"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - artist/added",
+    function: Art.Artist.add,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          name: "Muenchausen, Herbert",
+          birthDate: 500012231234,
+          placeOfBirth: "Munchen",
+          mainPlaceOfResidence: "Berlin",
+          education: "Schule",
+          awards: "Preise"
+        },
+        response: {
+          action: "added"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - artist/delete",
+    function: Art.Artist.delete,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          id: "6beaad69-dbff-4c7d-aaf5-d5b42914a0ac"
+        },
+        response: {
+          action: "deleted"
+        }
+      }
+    ]
+  },
+  {
+    name: "Art - artist/all",
+    function: Art.Art.all,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          pool: "cf1233b6-34d9-4ff9-ba6a-0f230794281f"
+        },
+        response: []
       }
     ]
   }

@@ -15,7 +15,6 @@ export default class Connector {
   }
   refreshConfig(api) {
     this._config = DevCloud.getConfig();
-    console.log(DevCloud.getConfig());
     const { accessToken, app } = this._config.tokens;
     if (this.useAppToken) this._authorization = app;
     else this._authorization = accessToken || app;

@@ -7,5 +7,8 @@ export default {
   },
   customer: {
     address: "https://customer.datenbanker.at"
+  },
+  art: {
+    address: "https://art.datenbanker.at"
   }
 };
