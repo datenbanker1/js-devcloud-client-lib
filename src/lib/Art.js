@@ -14,6 +14,14 @@ export default class Art {
         function: "/pool/my"
       });
     },
+    get: async id => {
+      const connector = new Connector(services.art.address);
+      return await connector.call({
+        method: "POST",
+        function: "/pool",
+        data: { id }
+      });
+    },
     all: async () => {
       const connector = new Connector(services.art.address);
       return await connector.call({
