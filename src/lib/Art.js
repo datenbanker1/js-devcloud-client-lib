@@ -22,6 +22,14 @@ export default class Art {
         data: { id }
       });
     },
+    getByUser: async id => {
+      const connector = new Connector(services.art.address);
+      return await connector.call({
+        method: "POST",
+        function: "/users/pools",
+        data: { id }
+      });
+    },
     all: async () => {
       const connector = new Connector(services.art.address);
       return await connector.call({
