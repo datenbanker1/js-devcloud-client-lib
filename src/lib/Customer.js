@@ -34,6 +34,18 @@ export default class Customer {
         }
       });
     },
+    getAllUsers: async (id, pool = false) => {
+      if (pool === false) pool = this.config.person.pool;
+      const connector = new Connector(services.authentication.address);
+      return await connector.call({
+        method: "POST",
+        function: "/persons/users",
+        data: {
+          id,
+          pool
+        }
+      });
+    },
     get: async (id, pool = false) => {
       if (pool === false) pool = this.config.person.pool;
       const connector = new Connector(services.customer.address);
