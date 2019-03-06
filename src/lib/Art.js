@@ -133,6 +133,14 @@ export default class Art {
         data: { ...artist }
       });
     },
+    update: async artist => {
+      const connector = new Connector(services.art.address);
+      return connector.call({
+        method: "POST",
+        function: "/artist/update",
+        data: { ...artist }
+      });
+    },
     delete: async id => {
       const connector = new Connector(services.art.address);
       return await connector.call({
