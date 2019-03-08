@@ -118,6 +118,14 @@ export default class Art {
         data: { id }
       });
     },
+    getByPerson: async person => {
+      const connector = new Connector(services.art.address);
+      return await connector.call({
+        method: "POST",
+        function: "/artist/person",
+        data: { person }
+      });
+    },
     all: async () => {
       const connector = new Connector(services.art.address);
       return await connector.call({
