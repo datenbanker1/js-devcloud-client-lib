@@ -122,7 +122,7 @@ export default class Art {
       const connector = new Connector(services.art.address);
       return await connector.call({
         method: "POST",
-        function: "/artist/person",
+        function: "/artist",
         data: { person }
       });
     },
