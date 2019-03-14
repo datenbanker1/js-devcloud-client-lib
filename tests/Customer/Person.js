@@ -9,6 +9,10 @@ export default {
     const customer = new Customer();
     return customer.person.delete(id);
   },
+  getAllUsersForUserPool: async ({ id }) => {
+    const customer = new Customer();
+    return customer.person.getAllUsersForUserPool(id);
+  },
   history: async ({ id }) => {
     const customer = new Customer();
     return customer.person.history(id);

@@ -91,6 +91,30 @@ export default [
     ]
   },
   {
+    name: "Customer/Person - User for Pool",
+    function: Customer.Person.getAllUsersForUserPool,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          id: "c7354e29-b610-45e6-a5c9-642c620fbfbe"
+        },
+        response: {
+          start: "eyJlbnRyeSI6MH0=",
+          previouse: Boolean,
+          events: [
+            {
+              requestId: String,
+              app: String,
+              ip: String,
+              creatrionDate: String
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
     name: "Art - pool/my",
     function: Art.Pool.my,
     scenarios: [

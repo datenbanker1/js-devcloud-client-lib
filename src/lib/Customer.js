@@ -7,13 +7,16 @@ export default class Customer {
   constructor(config = {}) {
     this.config = {
       person: {
-        pool: getPersonPool(config.user)
+        pool: getPersonPool(config.person)
       },
       opportunity: {
-        pool: getOpportunityPool(config.user)
+        pool: getOpportunityPool(config.opportunity)
       },
       task: {
-        pool: getTaskPool(config.user)
+        pool: getTaskPool(config.task)
+      },
+      user: {
+        pool: getUserPool(config.user)
       }
     };
     return {
@@ -34,15 +37,20 @@ export default class Customer {
         }
       });
     },
-    getAllUsers: async (id, pool = false) => {
+    getAllUsersForUserPool: async (id, userPool = false, pool = false) => {
       if (pool === false) pool = this.config.person.pool;
+      if (userPool === false) userPool = this.config.user.pool;
+
       const connector = new Connector(services.authentication.address);
       return await connector.call({
         method: "POST",
-        function: "/persons/users",
+        function: "/user/get",
         data: {
-          id,
-          pool
+          pool: userPool,
+          person: {
+            id,
+            pool
+          }
         }
       });
     },
@@ -255,5 +263,18 @@ const getTaskPool = (config = {}) => {
     return customer.task.pool[0];
   } else {
     throw new PoolException("Task pool could not be identified!");
+  }
+};
+const getUserPool = (config = {}) => {
+  if (config.pool) return config.pool;
+  const { authentication } = DevCloud.getConfig().services;
+  if (
+    authentication.user &&
+    authentication.user.pool &&
+    authentication.user.pool.length === 1
+  ) {
+    return authentication.user.pool[0];
+  } else {
+    throw new PoolException("Authentication pool could not be identified!");
   }
 };

@@ -54,7 +54,7 @@ export default class Authentication {
   }
   async resetPassword(email) {
     const connector = new Connector(services.authentication.address);
-    return await connector.call({
+    return connector.call({
       method: "POST",
       function: "/password/reset",
       data: {
@@ -65,7 +65,7 @@ export default class Authentication {
   }
   async resetAccount(email) {
     const connector = new Connector(services.authentication.address);
-    return await connector.call({
+    return connector.call({
       method: "POST",
       function: "/account/reset",
       data: {
