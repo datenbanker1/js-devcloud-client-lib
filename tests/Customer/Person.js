@@ -13,6 +13,10 @@ export default {
     const customer = new Customer();
     return customer.person.getAllUsersForUserPool(id);
   },
+  getAllTaskClocks: async ({ id }) => {
+    const customer = new Customer();
+    return customer.person.getAllTaskClocks(id);
+  },
   history: async ({ id }) => {
     const customer = new Customer();
     return customer.person.history(id);

@@ -118,6 +118,20 @@ export default class Customer {
           id
         }
       });
+    },
+    getAllTaskClocks: async (id = false, pool = false) => {
+      if (pool === false) pool = this.config.task.pool;
+      if (!id)
+        throw new IdException("Please set an id in Person.getAllTaskClocks()");
+      const connector = new Connector(services.customer.address);
+      return await connector.call({
+        method: "POST",
+        function: "/person/task/timeclock/all",
+        data: {
+          id,
+          pool
+        }
+      });
     }
   };
   opportunity = {

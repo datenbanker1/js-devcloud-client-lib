@@ -115,6 +115,19 @@ export default [
     ]
   },
   {
+    name: "Customer/Person - TimeClocks for Person",
+    function: Customer.Person.getAllTaskClocks,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          id: "c7354e29-b610-45e6-a5c9-642c620fbfbe"
+        },
+        response: []
+      }
+    ]
+  },
+  {
     name: "Art - pool/my",
     function: Art.Pool.my,
     scenarios: [
