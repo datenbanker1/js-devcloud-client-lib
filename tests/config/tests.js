@@ -2,6 +2,7 @@ import Authenticaion from "../Authentication";
 import Customer from "../Customer";
 import Art from "../Art";
 import access from "./access";
+
 export default [
   {
     name: "Authentication - login",
@@ -27,6 +28,17 @@ export default [
             { key: "password", error: "notValid" }
           ]
         }
+      }
+    ]
+  },
+  {
+    name: "Authentication - User add",
+    function: Authenticaion.user.add,
+    scenarios: [
+      {
+        name: "Success",
+        params: { username: "Test", email: "max.ebert@devdogs.at" },
+        response: {}
       }
     ]
   },

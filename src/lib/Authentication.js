@@ -4,8 +4,8 @@ import Connector from "./../helper/Connector";
 // used for communication with authentication service
 export default class Authentication {
   constructor(config = {}) {
-    this.user = {
-      pool: getUserPool(config.user)
+    this.config = {
+      user: { pool: getUserPool(config.user) }
     };
   }
   /**
@@ -21,7 +21,7 @@ export default class Authentication {
       data: {
         username,
         password,
-        pool: this.user.pool
+        pool: this.config.user.pool
       }
     });
     if (resp.accessToken && resp.idToken && resp.refreshToken) {
@@ -59,7 +59,7 @@ export default class Authentication {
       function: "/password/reset",
       data: {
         email,
-        pool: this.user.pool
+        pool: this.config.user.pool
       }
     });
   }
@@ -70,13 +70,27 @@ export default class Authentication {
       function: "/account/reset",
       data: {
         email,
-        pool: this.user.pool
+        pool: this.config.user.pool
       }
     });
   }
   getPool() {
-    return this.user.pool;
+    return this.config.user.pool;
   }
+  user = {
+    add: async (username, email, groups = [], person, pool = false) => {
+      const connector = new Connector(services.authentication.address);
+      if (pool === false) pool = this.config.user.pool;
+      let data = { username, groups, pool };
+      if (email) data.email = email;
+      if (person) data.person = perosn;
+      return connector.call({
+        method: "POST",
+        function: "/user/add",
+        data
+      });
+    }
+  };
 }
 
 const getUserPool = (config = {}) => {
