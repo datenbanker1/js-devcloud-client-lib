@@ -156,6 +156,19 @@ export default class Art {
         function: "/artist/delete",
         data: { id }
       });
+    },
+    history: async (id = false, position, amount = 10) => {
+      if (!id) throw new IdException("Please set an id in Artist.history()");
+      const connector = new Connector(services.art.address);
+      return await connector.call({
+        method: "POST",
+        function: "/artist/history",
+        data: {
+          id,
+          position: position || "eyJlbnRyeSI6MH0=",
+          amount
+        }
+      });
     }
   };
   art = {

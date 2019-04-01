@@ -317,6 +317,19 @@ export default [
         response: []
       }
     ]
+  },
+  {
+    name: "Art - artist/history",
+    function: Art.Artist.history,
+    scenarios: [
+      {
+        name: "Success",
+        params: {
+          id: "7efd747d-4071-471c-bfc7-2f428f63b660"
+        },
+        response: []
+      }
+    ]
   }
 ].map(test => {
   return {

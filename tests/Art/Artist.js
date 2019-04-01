@@ -16,5 +16,9 @@ export default {
   delete: async params => {
     const art = new Art();
     return art.artist.delete(params.id);
+  },
+  history: async params => {
+    const art = new Art();
+    return art.artist.history(params.id);
   }
 };
