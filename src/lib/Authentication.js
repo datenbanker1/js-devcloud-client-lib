@@ -83,7 +83,7 @@ export default class Authentication {
       if (pool === false) pool = this.config.user.pool;
       let data = { username, groups, pool };
       if (email) data.email = email;
-      if (person) data.person = perosn;
+      if (person) data.person = person;
       return connector.call({
         method: "POST",
         function: "/user/add",
