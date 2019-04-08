@@ -63,6 +63,12 @@ export default class Connector {
           this.refreshConfig(this._api);
           return this.call(params);
           // retry with new tokens
+        } else if (
+          resp.status === 403 &&
+          resp.data.code === "accessTokenExpired" &&
+          this.reconnected === false
+        ) {
+          DevCloud.on("userNotAllowed");
         } else if (resp.status === 403) {
           DevCloud.on("notAuthorized");
         }
