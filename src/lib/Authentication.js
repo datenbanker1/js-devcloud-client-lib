@@ -89,6 +89,18 @@ export default class Authentication {
         function: "/user/add",
         data
       });
+    },
+    update: async (set, id, pool) => {
+      if (pool === false) pool = this.config.user.pool;
+      return connector.call({
+        method: "POST",
+        function: "/user/update",
+        data: {
+          ...set,
+          id,
+          pool
+        }
+      });
     }
   };
 }
