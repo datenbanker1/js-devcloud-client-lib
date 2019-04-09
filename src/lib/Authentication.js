@@ -90,7 +90,7 @@ export default class Authentication {
         data
       });
     },
-    update: async (set, id, pool) => {
+    update: async (set, id, pool = false) => {
       const connector = new Connector(services.authentication.address);
       if (pool === false) pool = this.config.user.pool;
       return connector.call({
