@@ -91,6 +91,7 @@ export default class Authentication {
       });
     },
     update: async (set, id, pool) => {
+      const connector = new Connector(services.authentication.address);
       if (pool === false) pool = this.config.user.pool;
       return connector.call({
         method: "POST",
