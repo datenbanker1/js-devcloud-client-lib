@@ -48,7 +48,7 @@ class DevCloudClass {
     return this.config.tokens.idToken;
   }
   getGroups() {
-    return this.groups;
+    return this.config.groups;
   }
   getConfig() {
     return this.config;
