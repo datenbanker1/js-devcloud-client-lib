@@ -7,11 +7,11 @@ export default class Art {
     this.config = {};
   }
   pool = {
-    my: async () => {
+    myPools: async () => {
       const connector = new Connector(services.art.address);
       return await connector.call({
         method: "GET",
-        function: "/pool/my"
+        function: "/my/pools"
       });
     },
     get: async id => {
