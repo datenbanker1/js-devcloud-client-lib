@@ -29,6 +29,20 @@ DevCloud.init({
       }
     }
   },
+  endPoints: {
+    access: {
+      address: "https://access.datenbanker.at"
+    },
+    authentication: {
+      address: "https://authentication.datenbanker.at"
+    },
+    customer: {
+      address: "https://customer.datenbanker.at"
+    },
+    art: {
+      address: "https://test.datenbanker.at"
+    }
+  },
   handler: {
     userNotAllowed: () => {
       console.log("USER NOT ALLOWED");

@@ -1,4 +1,3 @@
-import services from "./../config/services";
 import Connector from "./../helper/Connector";
 import { DevCloud } from "./../";
 import { PoolException, IdException } from "./../errors/General";
@@ -28,7 +27,7 @@ export default class Customer {
   person = {
     getAll: async (pool = false) => {
       if (pool === false) pool = this.config.person.pool;
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/person/all",
@@ -41,7 +40,9 @@ export default class Customer {
       if (pool === false) pool = this.config.person.pool;
       if (userPool === false) userPool = this.config.user.pool;
 
-      const connector = new Connector(services.authentication.address);
+      const connector = new Connector(
+        DevCloud.getEndPoints().authentication.address
+      );
       return await connector.call({
         method: "POST",
         function: "/user/get",
@@ -56,7 +57,7 @@ export default class Customer {
     },
     get: async (id, pool = false) => {
       if (pool === false) pool = this.config.person.pool;
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/person/get",
@@ -68,7 +69,7 @@ export default class Customer {
     },
     add: async (fields, pool = false) => {
       if (pool === false) pool = this.config.person.pool;
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/person/add",
@@ -81,7 +82,7 @@ export default class Customer {
     update: async (fields, id = false, pool = false) => {
       if (pool === false) pool = this.config.person.pool;
       if (!id) throw new IdException("Please set an id in Person.update()");
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/person/update",
@@ -95,7 +96,7 @@ export default class Customer {
     history: async (id = false, pool = false, position, amount = 10) => {
       if (pool === false) pool = this.config.person.pool;
       if (!id) throw new IdException("Please set an id in Person.history()");
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/person/history",
@@ -109,7 +110,7 @@ export default class Customer {
     },
     delete: async (id, pool = false) => {
       if (pool === false) pool = this.config.person.pool;
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/person/delete",
@@ -123,7 +124,7 @@ export default class Customer {
       if (pool === false) pool = this.config.task.pool;
       if (!id)
         throw new IdException("Please set an id in Person.getAllTaskClocks()");
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/person/task/timeclock/all",
@@ -138,7 +139,7 @@ export default class Customer {
     getAll: async (pool = false) => {
       if (pool === false) pool = this.config.opportunity.pool;
 
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/opportunity/all",
@@ -151,7 +152,7 @@ export default class Customer {
       if (pool === false) pool = this.config.opportunity.pool;
       if (!id) throw new IdException("Please set an id in Opportunity.get()");
 
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/opportunity/get",
@@ -163,7 +164,7 @@ export default class Customer {
     },
     add: async (fields, pool = false) => {
       if (pool === false) pool = this.config.opportunity.pool;
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/opportunity/add",
@@ -184,7 +185,7 @@ export default class Customer {
         });
       }
 
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/opportunity/update",
@@ -200,7 +201,7 @@ export default class Customer {
       if (!id) {
         throw new IdException("Please set an id for Person.delete()");
       }
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/opportunity/delete",
@@ -215,7 +216,7 @@ export default class Customer {
       if (!id)
         throw new IdException("Please set an id in Opportunity.getPool()");
 
-      const connector = new Connector(services.customer.address);
+      const connector = new Connector(DevCloud.getEndPoints().customer.address);
       return await connector.call({
         method: "POST",
         function: "/opportunity/pool/get",
@@ -229,7 +230,9 @@ export default class Customer {
     timeClock: {
       add: async (start, end, pauses = [], pool = false) => {
         if (pool === false) pool = this.config.task.pool;
-        const connector = new Connector(services.customer.address);
+        const connector = new Connector(
+          DevCloud.getEndPoints().customer.address
+        );
         return await connector.call({
           method: "POST",
           function: "/task/timeclock/add",

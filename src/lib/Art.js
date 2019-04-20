@@ -1,4 +1,4 @@
-import services from "../config/services";
+import { DevCloud } from "./../";
 import Connector from "../helper/Connector";
 
 //used for communication with Customer service
@@ -8,14 +8,14 @@ export default class Art {
   }
   pool = {
     myPools: async () => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "GET",
         function: "/my/pools"
       });
     },
     get: async id => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/pool",
@@ -23,7 +23,7 @@ export default class Art {
       });
     },
     getByUser: async id => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/users/pools",
@@ -31,7 +31,7 @@ export default class Art {
       });
     },
     all: async () => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "GET",
         function: "/pool/all"
@@ -41,7 +41,7 @@ export default class Art {
       console.log({
         ...pool
       });
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/pool/add",
@@ -51,7 +51,7 @@ export default class Art {
       });
     },
     delete: async id => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/pool/delete",
@@ -62,7 +62,7 @@ export default class Art {
     },
     user: {
       add: async (user, pool) => {
-        const connector = new Connector(services.art.address);
+        const connector = new Connector(DevCloud.getEndPoints().art.address);
         return await connector.call({
           method: "POST",
           function: "/pool/user/add",
@@ -73,7 +73,7 @@ export default class Art {
         });
       },
       delete: async (user, pool) => {
-        const connector = new Connector(services.art.address);
+        const connector = new Connector(DevCloud.getEndPoints().art.address);
         return await connector.call({
           method: "POST",
           function: "/pool/user/delete",
@@ -86,7 +86,7 @@ export default class Art {
     },
     art: {
       add: async (art, pool) => {
-        const connector = new Connector(services.art.address);
+        const connector = new Connector(DevCloud.getEndPoints().art.address);
         return await connector.call({
           method: "POST",
           function: "/pool/art/add",
@@ -97,7 +97,7 @@ export default class Art {
         });
       },
       delete: async (art, pool) => {
-        const connector = new Connector(services.art.address);
+        const connector = new Connector(DevCloud.getEndPoints().art.address);
         return await connector.call({
           method: "POST",
           function: "/pool/art/delete",
@@ -111,7 +111,7 @@ export default class Art {
   };
   artist = {
     get: async id => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/artist",
@@ -119,7 +119,7 @@ export default class Art {
       });
     },
     getByPerson: async person => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/artist",
@@ -127,14 +127,14 @@ export default class Art {
       });
     },
     all: async () => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "GET",
         function: "/artist/all"
       });
     },
     add: async artist => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/artist/add",
@@ -142,7 +142,7 @@ export default class Art {
       });
     },
     update: async artist => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return connector.call({
         method: "POST",
         function: "/artist/update",
@@ -150,7 +150,7 @@ export default class Art {
       });
     },
     delete: async id => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/artist/delete",
@@ -159,7 +159,7 @@ export default class Art {
     },
     history: async (id = false, position, amount = 10) => {
       if (!id) throw new IdException("Please set an id in Artist.history()");
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/artist/history",
@@ -173,7 +173,7 @@ export default class Art {
   };
   art = {
     all: async pool => {
-      const connector = new Connector(services.art.address);
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "POST",
         function: "/art/all",

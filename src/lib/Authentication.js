@@ -1,4 +1,3 @@
-import services from "./../config/services";
 import { DevCloud } from "./../";
 import Connector from "./../helper/Connector";
 // used for communication with authentication service
@@ -14,7 +13,10 @@ export default class Authentication {
    * @return {Promise}
    */
   async login(username, password) {
-    const connector = new Connector(services.authentication.address, true);
+    const connector = new Connector(
+      DevCloud.getEndPoints().authentication.address,
+      true
+    );
     const resp = await connector.call({
       method: "POST",
       function: "/login",
@@ -36,7 +38,9 @@ export default class Authentication {
   }
 
   async challenge(challenges, session) {
-    const connector = new Connector(services.authentication.address);
+    const connector = new Connector(
+      DevCloud.getEndPoints().authentication.address
+    );
     const resp = await connector.call({
       method: "POST",
       function: "/challenge",
@@ -53,7 +57,9 @@ export default class Authentication {
     return resp;
   }
   async resetPassword(email) {
-    const connector = new Connector(services.authentication.address);
+    const connector = new Connector(
+      DevCloud.getEndPoints().authentication.address
+    );
     return connector.call({
       method: "POST",
       function: "/password/reset",
@@ -64,7 +70,9 @@ export default class Authentication {
     });
   }
   async resetAccount(email) {
-    const connector = new Connector(services.authentication.address);
+    const connector = new Connector(
+      DevCloud.getEndPoints().authentication.address
+    );
     return connector.call({
       method: "POST",
       function: "/account/reset",
@@ -79,7 +87,9 @@ export default class Authentication {
   }
   user = {
     add: async (username, email, groups = [], person, pool = false) => {
-      const connector = new Connector(services.authentication.address);
+      const connector = new Connector(
+        DevCloud.getEndPoints().authentication.address
+      );
       if (pool === false) pool = this.config.user.pool;
       let data = { username, groups, pool };
       if (email) data.email = email;
@@ -91,7 +101,9 @@ export default class Authentication {
       });
     },
     update: async (set, id, pool = false) => {
-      const connector = new Connector(services.authentication.address);
+      const connector = new Connector(
+        DevCloud.getEndPoints().authentication.address
+      );
       if (pool === false) pool = this.config.user.pool;
       return connector.call({
         method: "POST",

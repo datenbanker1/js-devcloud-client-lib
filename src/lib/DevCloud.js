@@ -1,4 +1,5 @@
 import { apiTokenNotSetError } from "./../errors/General";
+import endPoints from "./../config/services";
 
 class DevCloudClass {
   init(params) {
@@ -13,6 +14,7 @@ class DevCloudClass {
       groups: [],
       signedIn: false,
       services: params.services || {},
+      endPoints: params.endPoints || endPoints,
       handler: params.handler || {},
       handlerList: ["tokenChange", "notAuthorized"]
     };
@@ -52,6 +54,9 @@ class DevCloudClass {
   }
   getConfig() {
     return this.config;
+  }
+  getEndPoints() {
+    return this.config.endPoints;
   }
 }
 
