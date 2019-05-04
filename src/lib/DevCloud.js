@@ -1,5 +1,7 @@
 import { apiTokenNotSetError } from "./../errors/General";
 import endPoints from "./../config/services";
+import Storage from "@datenbanker/storage";
+const storage = new Storage();
 
 class DevCloudClass {
   init(params) {
@@ -42,6 +44,11 @@ class DevCloudClass {
     } else {
       this.config.groups = [];
     }
+
+    storage.set("user:accessToken", newTokens.accessToken);
+    storage.set("user:idToken", newTokens.idToken);
+    storage.set("user:refreshToken", newTokens.refreshToken);
+
     this.on("tokenChange", newTokens);
     this.config.tokens = { ...this.config.tokens, ...newTokens };
     this.config.signedIn = !!newTokens.accessToken;
