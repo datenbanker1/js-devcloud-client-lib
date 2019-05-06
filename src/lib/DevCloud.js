@@ -14,6 +14,7 @@ class DevCloudClass {
         idToken: false
       },
       groups: [],
+      groupsAlias: params.groups || {},
       signedIn: false,
       services: params.services || {},
       endPoints: params.endPoints || endPoints,
@@ -45,7 +46,9 @@ class DevCloudClass {
       };
     if (newTokens.accessToken) {
       const data = JSON.parse(window.atob(newTokens.accessToken.split(".")[1]));
-      this.config.groups = data.scopes;
+      this.config.groups = data.scopes.map(
+        scope => this.config.groupsAlias[scope] || scope
+      );
     } else {
       this.config.groups = [];
     }
