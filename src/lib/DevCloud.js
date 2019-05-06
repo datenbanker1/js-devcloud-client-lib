@@ -21,6 +21,11 @@ class DevCloudClass {
       handlerList: ["tokenChange", "notAuthorized"]
     };
     this.config = config;
+    this.setTokens({
+      accessToken: storage.get("user:accessToken"),
+      refreshToken: storage.get("user:idToken"),
+      idToken: storage.get("user:refreshToken")
+    });
   }
   changeAppToken(token) {
     this.config.tokens.app = token;
