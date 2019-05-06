@@ -47,11 +47,7 @@ DevCloud.init({
     userNotAllowed: () => {
       console.log("USER NOT ALLOWED");
     },
-    tokenChange: tokens => {
-      storage.set("user:accessToken", tokens.accessToken);
-      storage.set("user:idToken", tokens.idToken);
-      storage.set("user:refreshToken", tokens.refreshToken);
-    }
+    tokenChange: tokens => {}
   }
 });
 

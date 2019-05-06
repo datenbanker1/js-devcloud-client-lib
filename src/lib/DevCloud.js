@@ -53,9 +53,12 @@ class DevCloudClass {
       this.config.groups = [];
     }
 
-    storage.set("user:accessToken", newTokens.accessToken);
-    storage.set("user:idToken", newTokens.idToken);
-    storage.set("user:refreshToken", newTokens.refreshToken);
+    Boolean(newTokens.accessToken) &&
+      storage.set("user:accessToken", newTokens.accessToken);
+    Boolean(newTokens.idToken) &&
+      storage.set("user:idToken", newTokens.idToken);
+    Boolean(newTokens.refreshToken) &&
+      storage.set("user:refreshToken", newTokens.refreshToken);
 
     this.on("tokenChange", newTokens);
     this.config.tokens = { ...this.config.tokens, ...newTokens };
