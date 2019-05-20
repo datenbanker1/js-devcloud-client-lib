@@ -244,12 +244,9 @@ export default class Customer {
           }
         });
       },
-      getAllMy: async (id = false, pool = false) => {
+      getAllMy: async (pool = false) => {
         if (pool === false) pool = this.config.task.pool;
-        if (!id)
-          throw new IdException(
-            "Please set an id in Person.getAllTaskClocks()"
-          );
+
         const connector = new Connector(
           DevCloud.getEndPoints().customer.address
         );
