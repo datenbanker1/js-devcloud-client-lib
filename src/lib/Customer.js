@@ -244,7 +244,7 @@ export default class Customer {
           }
         });
       },
-      getAllMyTaskClocks: async (id = false, pool = false) => {
+      getAllMy: async (id = false, pool = false) => {
         if (pool === false) pool = this.config.task.pool;
         if (!id)
           throw new IdException(
