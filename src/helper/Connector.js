@@ -86,7 +86,7 @@ export default class Connector {
   }
   async reconnect() {
     const { tokens } = DevCloud.getConfig();
-
+    console.log("START_RECONNECT");
     const authentication = new Authentication();
     const pool = authentication.getPool();
     const request = {
@@ -104,8 +104,13 @@ export default class Connector {
     };
 
     let response;
-    response = await axios(request);
-    DevCloud.setTokens(response.data);
+    try {
+      response = await axios(request);
+      DevCloud.setTokens(response.data);
+    } catch (err) {
+      console.log("REFRESH ERROR", err, request);
+    }
+
     return response.data;
   }
 }

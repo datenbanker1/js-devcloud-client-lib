@@ -243,6 +243,23 @@ export default class Customer {
             pauses
           }
         });
+      },
+      getAllMyTaskClocks: async (id = false, pool = false) => {
+        if (pool === false) pool = this.config.task.pool;
+        if (!id)
+          throw new IdException(
+            "Please set an id in Person.getAllTaskClocks()"
+          );
+        const connector = new Connector(
+          DevCloud.getEndPoints().customer.address
+        );
+        return await connector.call({
+          method: "POST",
+          function: "/my/task/timeclock/all",
+          data: {
+            pool
+          }
+        });
       }
     }
   };
