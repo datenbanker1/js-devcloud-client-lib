@@ -7,11 +7,18 @@ export default class Art {
     this.config = {};
   }
   pool = {
-    myPools: async () => {
+    myAll: async () => {
       const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
         method: "GET",
         function: "/my/pools"
+      });
+    },
+    my: async id => {
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
+      return await connector.call({
+        method: "GET",
+        function: "/my/pool/" + id
       });
     },
     get: async id => {
