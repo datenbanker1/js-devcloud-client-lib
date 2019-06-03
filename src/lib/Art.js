@@ -57,6 +57,17 @@ export default class Art {
         }
       });
     },
+    myUpdate: async (id, data) => {
+      const connector = new Connector(DevCloud.getEndPoints().art.address);
+      return await connector.call({
+        method: "POST",
+        function: "/my/pool/update",
+        data: {
+          ...data,
+          id
+        }
+      });
+    },
     delete: async id => {
       const connector = new Connector(DevCloud.getEndPoints().art.address);
       return await connector.call({
