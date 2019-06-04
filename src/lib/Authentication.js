@@ -114,6 +114,16 @@ export default class Authentication {
           pool
         }
       });
+    },
+    getAllPublic: async pool => {
+      const connector = new Connector(
+        DevCloud.getEndPoints().authentication.address
+      );
+      if (pool === false) pool = this.config.user.pool;
+      return connector.call({
+        method: "GET",
+        function: `/pool/${pool}/public`
+      });
     }
   };
 }

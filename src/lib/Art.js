@@ -78,7 +78,7 @@ export default class Art {
         }
       });
     },
-    user: {
+    member: {
       add: async (user, pool) => {
         const connector = new Connector(DevCloud.getEndPoints().art.address);
         return await connector.call({
