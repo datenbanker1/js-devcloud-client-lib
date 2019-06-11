@@ -90,11 +90,36 @@ export default class Art {
           }
         });
       },
-      delete: async (user, pool) => {
+      invite: async ({ user, permission, type }, pool) => {
         const connector = new Connector(DevCloud.getEndPoints().art.address);
         return await connector.call({
           method: "POST",
-          function: "/pool/user/delete",
+          function: `/my/pool/${pool}/user/invite`,
+          data: {
+            pool,
+            user,
+            permission,
+            type
+          }
+        });
+      },
+      inviteRequest: async (accept, pool) => {
+        const connector = new Connector(DevCloud.getEndPoints().art.address);
+        return await connector.call({
+          method: "POST",
+          function: `/my/pool/${pool}/user/invite`,
+          data: {
+            accept
+          }
+        });
+      },
+      delete: async (user, pool, admin = false) => {
+        const connector = new Connector(DevCloud.getEndPoints().art.address);
+        return await connector.call({
+          method: admin ? "POST" : "DELETE",
+          function: admin
+            ? "/pool/user/delete"
+            : `/my/pool/${pool}/user/${user}/delete`,
           data: {
             pool,
             user
